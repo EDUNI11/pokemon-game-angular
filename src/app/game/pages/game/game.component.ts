@@ -16,11 +16,28 @@ export class GameComponent implements OnInit {
   private _pokemonSelected: string = '';
   private _pokemons: Pokemon[] = [];
   private _pokemon!: Pokemon;
+  widthImagen = 20;
+
+
+  cambiarFondo() {
+    const colorFondo = document.getElementById("fondo-DOM");
+    if (colorFondo) {
+      if (!this._selected && !colorFondo.style.backgroundColor) {
+        colorFondo.style.backgroundColor = "black";
+      } else if (this._selected) {
+        colorFondo.style.backgroundColor = "red";
+        this.widthImagen = 12;
+      } else{
+        colorFondo.style.backgroundColor = "";
+        this.widthImagen = 20;
+      }
+    }
+  }
 
   get score(): number {
     return this.playerService.score;
   }
-  
+
   get hearts(): Array<any> {
     return Array(this.playerService.lifes);
   }
@@ -68,7 +85,7 @@ export class GameComponent implements OnInit {
       this.playerService.decreaseLifes();
       console.log('incorrect');
     }
-    
+
   }
 
   // this function es execute every time that user click in next game

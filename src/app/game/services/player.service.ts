@@ -9,9 +9,14 @@ export class PlayerService {
   private _score: number = 0;
   private _lifes: number = 0;
   private _highScore: number = 0;
+  private _userScores: Map<string, number> = new Map();
 
   get score(): number {
     return this._score;
+  }
+
+  establecer(value: number) {
+    this._score = value;
   }
 
   get highScore(): number {
@@ -34,15 +39,19 @@ export class PlayerService {
     this._score = 0;
     this._lifes = 5;
   }
-  
+
   increasePoints() {
     this._score += 10;
+  }
+
+  get userScores(): [string, number][] {
+    return Array.from(this._userScores.entries());
   }
 
   decreaseLifes() {
     this._lifes -= 1;
     if (this._lifes <= 0) {
-      
+
       if (this._score > this._highScore) this.newHighScore()
 
       this._router.navigate(['/game/gameover']);
@@ -53,4 +62,14 @@ export class PlayerService {
     this._highScore = this._score;
     localStorage.setItem('highscore', String(this._highScore));
   }
+
+  actualizarPuntuacionUsuario(nombreUsuario: string, puntuacion: number) {
+    let puntuacionActual = this._userScores.get(nombreUsuario) || 0;
+    this._userScores.set(nombreUsuario, puntuacionActual + puntuacion);
+  }
+
+  obtenerPuntuacionUsuario(nombreUsuario: string) {
+    return this._userScores.get(nombreUsuario) || 0;
+  }
+
 }

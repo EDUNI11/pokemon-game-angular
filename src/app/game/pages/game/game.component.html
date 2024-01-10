@@ -14,13 +14,12 @@
         <div>
             <h2>Who is that Pokemon?...</h2>
         </div>
-    
+
         <div>
-            <app-pokemon-view [url]="urlImage"
-                              [show]="selected"
-                              [width]="275"
-                              [height]="200">
-            </app-pokemon-view>
+          <app-pokemon-view id="fondo-DOM" (dblclick)="cambiarFondo()" [url]="urlImage"
+                            [show]="selected"
+                            [width]="widthImagen">
+          </app-pokemon-view>
             <h2 class="response" *ngIf="selected">Is {{ pokemonName }}!</h2>
         </div>
 
@@ -38,14 +37,14 @@
                 </li>
             </ul>
         </div>
-    
+
         <!-- <div>
             <h3>Points: {{ points }}</h3>
         </div>
         <div>
             <img *ngFor="let heart of hearts" class="heart" src="assets/heart.png">
         </div> -->
-    
+
         <div *ngIf="selected">
             <button mat-raised-button
                     color="primary"
@@ -54,7 +53,7 @@
             </button>
         </div>
     </div>
-    
+
 </ng-container>
 
 <ng-template #Loading>
