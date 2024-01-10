@@ -1,0 +1,12 @@
+<form id="formulario">
+  <label for="jugador">JUGADOR: </label>
+  <input class="espacios" type="text" id="jugador">
+  <label for="puntos">PUNTUACIÓN: </label>
+  <input class="espacios" type="number" id="puntos">
+  <button (click)="actualizarScore()" mat-raised-button
+          color="primary"
+          class="breath"
+          routerLink="/game">
+    JUGAR
+  </button>
+</form>
